@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="./styles/sidebar.css" />
+    <link rel="stylesheet" href="./styles/default.css" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>WYSWYG Editor</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- side bar -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <h3>Dashboard</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+          <p>Your Profile</p>
+          <li class="active">
+            <a
+              href="#homeSubmenu"
+              data-toggle="collapse"
+              aria-expanded="false"
+              class="dropdown-toggle"
+              >Chapter</a
+            >
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="#">Chapter 1</a>
+              </li>
+              <li>
+                <a href="#">Chapter 2</a>
+              </li>
+              <li>
+                <a href="#">Chapter 3</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="#pageSubmenu"
+              data-toggle="collapse"
+              aria-expanded="false"
+              class="dropdown-toggle"
+              >Pages</a
+            >
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="#">Page 1</a>
+              </li>
+              <li>
+                <a href="#">Page 2</a>
+              </li>
+              <li>
+                <a href="#">Page 3</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Library</a>
+          </li>
+          <li>
+            <a href="#">Support</a>
+          </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+          <li>
+            <a href="#" class="download">Save</a>
+          </li>
+          <li>
+            <a
+              href="https://bootstrapious.com/p/bootstrap-sidebar"
+              class="article"
+              >Log Out</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- editor -->
+      <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-align-left"></i>
+              <span>x</span>
+            </button>
+            <p class="m-0 p-0">
+              <span class="font-weight-bold">Word count: </span>10000 |
+              <span class="font-weight-bold">Status: </span>Chapter 1: Page 1
+            </p>
+          </div>
+        </nav>
+
+        <!-- end of sidebar nav -->
+        <div class="row mx-5">
+          <div class="col">
+            <h1 contenteditable="true">Title</h1>
+          </div>
+        </div>
+
+        <div class="row mx-5 mb-5 date-author">
+          <div class="col">
+            <p class="font-italic m-0" contenteditable="true">
+              Date Created: 01-01-2000
+            </p>
+            <p class="font-italic m-0" contenteditable="true">
+              Last Update: 01-01-2020
+            </p>
+            <p class="font-italic m-0" contenteditable="true">
+              Author: John Smith
+            </p>
+          </div>
+        </div>
+
+        <div class="row mx-5 mb-5 what-to-learn">
+          <div class="col">
+            <h5 contenteditable="true" spellcheck="true" lang="tl">What You’ll Learn in This Lesson:</h5>
+            <ul contenteditable="true" spellcheck="true" lang="tl">
+              <li>Image What functions are and what they do</li>
+
+              <li>Image How to define functions</li>
+
+              <li>Image How to call (execute) functions</li>
+
+              <li>Image How functions receive data</li>
+
+              <li>Image How to return values from functions</li>
+
+              <li>Image How to create anonymous functions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row mx-5">
+          <div class="col">
+            <figure class="figure text-center">
+              <img
+                src="https://via.placeholder.com/400x300"
+                class="figure-img img-fluid rounded"
+                alt="A generic square placeholder image with rounded corners in a figure."
+              />
+              <figcaption class="figure-caption">
+                A caption for the above image. Donec rutrum congue leo eget
+                malesuada. Nulla quis lorem ut libero malesuada feugiat.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="row mx-5">
+          <div class="col">
+            <h5 contenteditable="true" spellcheck="true" lang="tl">
+              Lorem Ipsum dolor
+            </h5>
+            <p contenteditable="true" spellcheck="true" lang="tl">
+              Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+              Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+              dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+              Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+              dui. Vivamus magna justo, lacinia eget consectetur sed, convallis
+              at tellus. Vivamus suscipit tortor eget felis porttitor volutpat.
+              Nulla porttitor accumsan tincidunt. Vestibulum ante ipsum primis
+              in faucibus orci luctus et ultrices posuere cubilia Curae; Donec
+              velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+              ligula. Donec sollicitudin molestie malesuada. Quisque velit nisi,
+              pretium ut lacinia in, elementum id enim. Praesent sapien massa,
+              convallis a pellentesque nec, egestas non nisi.
+            </p>
+          </div>
+        </div>
+
+        <div class="row mx-5">
+          <div class="col">
+            <h5 contenteditable="true" spellcheck="true" lang="tl">
+              Lorem Ipsum dolor
+            </h5>
+            <p contenteditable="true" spellcheck="true" lang="tl">
+              Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+              Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+              dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+              Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+              dui. Vivamus magna justo, lacinia eget consectetur sed, convallis
+              at tellus. Vivamus suscipit tortor eget felis porttitor volutpat.
+              Nulla porttitor accumsan tincidunt. Vestibulum ante ipsum primis
+              in faucibus orci luctus et ultrices posuere cubilia Curae; Donec
+              velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+              ligula. Donec sollicitudin molestie malesuada. Quisque velit nisi,
+              pretium ut lacinia in, elementum id enim. Praesent sapien massa,
+              convallis a pellentesque nec, egestas non nisi.
+            </p>
+          </div>
+        </div>
+
+        <div class="row mx-5">
+          <div class="col">
+            <blockquote
+              class="blockquote"
+              contenteditable="true"
+              spellcheck="true"
+              lang="tl"
+            >
+              <p class="mb-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elits.
+                Integer posuere erat a ante.
+              </p>
+              <footer class="blockquote-footer">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="row mx-5 text-white bg-dark">
+          <div class="col">
+            <code contenteditable="true">
+              const x = 12; ()->{ console.log("hello, world!"); }
+            </code>
+          </div>
+        </div>
+
+        <div class="row mx-5 mt-5">
+          <div class="col">
+            <p contenteditable="true">
+              <cite>The Scream</cite> by Edward Munch. Painted in 1893.
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary btn-lg float-right mr-5"
+          draggable="true"
+        >
+          +
+        </button>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="./scripts/sidebar.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

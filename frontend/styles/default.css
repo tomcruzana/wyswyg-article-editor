@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+}
+
+body {
+    background-color: #fff !important;
+}
+
+li{
+  font-size: 1.3em;
+}
+
+.editor-container {
+  background-color: #fff !important;
+}
+.row:hover {
+  opacity: 50%; /* temp */
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+.date-author{
+  font-size: .7em !important;
+}
+
+.what-to-learn
+{
+  font-size: .7em !important;
+}
