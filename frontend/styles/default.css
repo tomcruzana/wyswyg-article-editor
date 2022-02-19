@@ -5,10 +5,10 @@
 }
 
 body {
-    background-color: #fff !important;
+  background-color: #fff !important;
 }
 
-li{
+li {
   font-size: 1.3em;
 }
 
@@ -23,11 +23,29 @@ li{
   outline: 0px solid transparent;
 }
 
-.date-author{
-  font-size: .7em !important;
+.date-author {
+  font-size: 0.7em !important;
 }
 
-.what-to-learn
-{
-  font-size: .7em !important;
+.what-to-learn {
+  font-size: 0.7em !important;
+}
+
+.videosizer {
+  width: 640px;
+}
+
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+  height: 500px;
+  width: 500px;
+}
+
+.carousel-item {
+  text-align: center;
+}
+
+.carousel {
+  height: 500px;
 }
