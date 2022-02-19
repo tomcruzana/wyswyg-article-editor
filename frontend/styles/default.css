@@ -49,3 +49,12 @@ li {
 .carousel {
   height: 500px;
 }
+
+/* component <- move to a diff css module */
+.component {
+  border: 1px solid transparent;
+}
+
+.component:hover {
+  border: 1px solid cyan;
+}

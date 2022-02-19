@@ -1,0 +1,25 @@
+.widget {
+    box-sizing: border-box;
+    border: 1px solid black;
+    margin: 0px;
+    display: block;
+    background-color: aquamarine;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  .plus,
+  .change,
+  .trash {
+    margin: 0px;
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .plus:hover,
+  .change:hover,
+  .trash:hover {
+    cursor: pointer;
+    background-color: aqua;
+  }
