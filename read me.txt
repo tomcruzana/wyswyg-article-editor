@@ -1,2 +1,1 @@
-this is a
-jsp, servlet & jdbc project
+a WYSWYG editor made in JSP, Servlet & JDBC
