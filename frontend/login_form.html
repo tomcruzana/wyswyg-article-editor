@@ -8,6 +8,12 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/e4d4c44ee2.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="./styles/login_form.css" />
 
     <!-- Bootstrap CSS -->
@@ -21,6 +27,13 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    <nav class="navbar navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">
+        <i class="fa-solid fa-user-astronaut"></i>
+        Admin Login
+      </a>
+    </nav>
+
     <div class="container-fluid form-container my-5">
       <h1 class="mb-3">Sign In</h1>
       <form id="loginForm" action="" method="GET">
@@ -59,7 +72,11 @@
         </div>
 
         <a href="http://">Forgot password or username</a><br />
-        <button name="submit" type="submit" class="btn btn-primary float-right mt-3">
+        <button
+          name="submit"
+          type="submit"
+          class="btn btn-primary float-right mt-3"
+        >
           Login
         </button>
       </form>
