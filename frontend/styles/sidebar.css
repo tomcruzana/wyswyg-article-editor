@@ -21,7 +21,7 @@ a:active,
 a:visited,
 a:hover,
 a:focus {
-  color: inherit;
+  color: #fff !important;
   text-decoration: none;
   transition: all 0.3s;
 }
@@ -134,7 +134,7 @@ ul.CTAs a {
 
 a.download {
   background: #fff;
-  color: #7386d5;
+  color: #7386d5 !important;
 }
 
 a.article,
