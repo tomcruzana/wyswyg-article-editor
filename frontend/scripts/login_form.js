@@ -3,7 +3,13 @@ const showPassCheckBox = document.querySelector(".show-password");
 const rememberMeCheckBox = document.querySelector(".remember-me");
 
 // on document load check for user cookies
-// To-Do
+window.addEventListener("load", function () {
+  // destructure cookie data
+  const { username, password, rememberMe } = parseCookie(document.cookie);
+  loginForm.user_username.value = username;
+  loginForm.user_password.value = password;
+  rememberMeCheckBox.checked = rememberMe;
+});
 
 // submit form
 loginForm.submit.addEventListener("click", (e) => {
@@ -48,3 +54,13 @@ function rememberUser() {
     alert(document.cookie);
   }
 }
+
+// the cookie parser
+const parseCookie = (str) =>
+  str
+    .split(";")
+    .map((v) => v.split("="))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+      return acc;
+    }, {});
