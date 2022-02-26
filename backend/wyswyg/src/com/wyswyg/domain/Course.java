@@ -1,15 +1,15 @@
 package com.wyswyg.domain;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Set;
 
 public class Course {
 	private int id;
 	private Set<Chapter> chapters;
 	private String title;
-	private LocalDate dateCreated;
+	private Date dateCreated;
 
-	public Course(int id, Set<Chapter> chapters, String title, LocalDate dateCreated) {
+	public Course(int id, Set<Chapter> chapters, String title, Date dateCreated) {
 		this.id = id;
 		this.chapters = chapters;
 		this.title = title;
@@ -40,11 +40,11 @@ public class Course {
 		this.title = title;
 	}
 
-	public LocalDate getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDate dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -68,6 +68,12 @@ public class Course {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", chapters=" + chapters + ", title=" + title + ", dateCreated=" + dateCreated
+				+ "]";
 	}
 
 }
