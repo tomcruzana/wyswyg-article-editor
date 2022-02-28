@@ -1,15 +1,17 @@
 package com.wyswyg.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Chapter {
+@SuppressWarnings("serial")
+public class Chapter implements Serializable {
 	private int id;
 	private Set<Page> pages;
 	private String title;
 	private int number;
-	private String course;
+	private Course course;
 
-	public Chapter(int id, Set<Page> pages, String title, int number, String course) {
+	public Chapter(int id, Set<Page> pages, String title, int number, Course course) {
 		this.id = id;
 		this.pages = pages;
 		this.title = title;
@@ -49,11 +51,11 @@ public class Chapter {
 		this.number = number;
 	}
 
-	public String getCourse() {
+	public Course getCourse() {
 		return course;
 	}
 
-	public void setCourse(String course) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}
 

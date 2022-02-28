@@ -1,9 +1,11 @@
 package com.wyswyg.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
-public class Course {
+@SuppressWarnings("serial")
+public class Course implements Serializable {
 	private int id;
 	private Set<Chapter> chapters;
 	private String title;
