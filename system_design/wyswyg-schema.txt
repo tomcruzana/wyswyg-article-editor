@@ -1,0 +1,28 @@
+# Modify this code to update the DB schema diagram. https://app.quickdatabasediagrams.com/#/
+# To reset the sample schema, replace everything with
+# two dots ('..' - without quotes).
+
+course
+--
+id PK varchar2(150)
+chapter_id varchar2(150) FK -< chapter.id
+title varchar2
+date_created date
+
+
+chapter
+--
+id PK varchar2(150)
+title varchar2(150)
+chapter_number integer
+page_id varchar2(150) FK -< page.id
+course_id varchar2(150) FK - course.id
+
+page
+--
+id PK varchar2(150)
+title varchar2(150)
+components CLOB
+page_number integer
+chapter_number varchar2(150) FK - chapter.id
+
