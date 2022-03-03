@@ -11,6 +11,9 @@ public class Chapter implements Serializable {
 	private int number;
 	private Course course;
 
+	public Chapter() {
+	}
+
 	public Chapter(int id, Set<Page> pages, String title, int number, Course course) {
 		this.id = id;
 		this.pages = pages;

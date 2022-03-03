@@ -3,12 +3,15 @@ package com.wyswyg.domain;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Page implements Serializable{
+public class Page implements Serializable {
 	private int id;
 	private String components;
 	private String title;
 	private int number;
 	private Chapter chapter;
+
+	public Page() {
+	}
 
 	public Page(int id, String components, String title, int number, Chapter chapter) {
 		this.id = id;

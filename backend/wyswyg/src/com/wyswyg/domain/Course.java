@@ -11,6 +11,9 @@ public class Course implements Serializable {
 	private String title;
 	private Date dateCreated;
 
+	public Course() {
+	}
+
 	public Course(int id, Set<Chapter> chapters, String title, Date dateCreated) {
 		this.id = id;
 		this.chapters = chapters;
