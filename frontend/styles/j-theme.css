@@ -12,6 +12,11 @@
   border-right: 1px solid #e6e6e6 !important;
 }
 
+.j-arrow-left{
+  position: absolute;
+  right: -10px;
+}
+
 .videosizer {
   width: 640px;
 }

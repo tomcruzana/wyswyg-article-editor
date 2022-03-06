@@ -15,5 +15,11 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-configuration2-2.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-lang3-3.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-text-1.8.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

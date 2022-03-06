@@ -24,10 +24,13 @@ public class CourseDaoImpl implements Dao<Course> {
 		int rowsAffected = 0;
 		try (Connection dbCon = DbConnector.getConnection();) {
 			System.out.println("LOG: connection success!");
-			ps = dbCon.prepareStatement("INSERT INTO course VALUES(?, ?, ?)");
+			ps = dbCon.prepareStatement("INSERT INTO course VALUES(?, ?, ?, ?)");
 			ps.setInt(1, theCourse.getId());
 			ps.setString(2, theCourse.getTitle());
 			ps.setDate(3, theCourse.getDateCreated());
+			
+			// To-Do: figure out how to insert the chapter object!!!
+			ps.setString(4, theCourse.getChapters());
 			rowsAffected = ps.executeUpdate();
 			System.out.println("LOG: sql update executed");
 

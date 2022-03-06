@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Set;
 
 @SuppressWarnings("serial")
-public class Chapter implements Serializable {
-	private int id;
+public class Chapter implements Serializable, Comparable<Chapter> {
+	private String id;
 	private Set<Page> pages;
 	private String title;
 	private int number;
@@ -14,7 +14,7 @@ public class Chapter implements Serializable {
 	public Chapter() {
 	}
 
-	public Chapter(int id, Set<Page> pages, String title, int number, Course course) {
+	public Chapter(String id, Set<Page> pages, String title, int number, Course course) {
 		this.id = id;
 		this.pages = pages;
 		this.title = title;
@@ -22,11 +22,11 @@ public class Chapter implements Serializable {
 		this.course = course;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -63,25 +63,28 @@ public class Chapter implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+	public String toString() {
+		return "Chapter [id=" + id + ", pages=" + pages + ", title=" + title + ", number=" + number + ", course="
+				+ course + "]";
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Chapter other = (Chapter) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public int compareTo(Chapter o) {
+		// extract and get the chapter numbers
+		// e.g: SP100CH100 = 100
+		// test logs
+		Integer thisChapter = Integer.parseInt(this.id.substring(7, 10));
+		Integer otherChapter = Integer.parseInt(o.getId().substring(7, 10));
+		System.out.println(thisChapter + " " + otherChapter);
+
+		// comparison logic
+		if (this.id == o.getId()) {
+			return 0;
+		} else if (thisChapter > otherChapter) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 
 }
