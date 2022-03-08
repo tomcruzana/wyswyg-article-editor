@@ -65,17 +65,16 @@ public class Chapter implements Serializable, Comparable<Chapter> {
 	@Override
 	public String toString() {
 		return "Chapter [id=" + id + ", pages=" + pages + ", title=" + title + ", number=" + number + ", course="
-				+ course + "]";
+				+ course.getId() + "]";
 	}
 
 	@Override
 	public int compareTo(Chapter o) {
 		// extract and get the chapter numbers
 		// e.g: SP100CH100 = 100
-		// test logs
-		Integer thisChapter = Integer.parseInt(this.id.substring(7, 10));
-		Integer otherChapter = Integer.parseInt(o.getId().substring(7, 10));
-		System.out.println(thisChapter + " " + otherChapter);
+		Integer thisChapter = Integer.parseInt(this.id.substring(7));
+		Integer otherChapter = Integer.parseInt(o.getId().substring(7));
+		// test log: System.out.println(thisChapter + " " + otherChapter);
 
 		// comparison logic
 		if (this.id == o.getId()) {

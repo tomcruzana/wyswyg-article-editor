@@ -1,41 +1,21 @@
-//		// create a new course Date theDate = Date.valueOf(LocalDate.now()); // xfer to
-//		// utils package?
-//		Course theCourse = new Course(500, null, "React", theDate);
-//		System.out.println("LOG: course instance created!");
-//
-//		// persist into db Dao theCourseDao = new CourseDaoImpl(); int res =
-//		theCourseDao.add(theCourse);
-//		System.out.println("LOG: course object added!");
-//
-//		// check if transaction is successful if (res > 0)
-//		System.out.println("LOG: done!");
-//
-//		// ======================================
-//		// get an existing course
-//		int courseId = 500;
-//		Dao<Course> theCourseDao = new CourseDaoImpl();
-//		Course theCourse = (Course) theCourseDao.get(courseId);
-//		System.out.println(theCourse);
-
-		// ======================================
-
-		// delete an existing course
-//		Dao<Course> theCourseDao = new CourseDaoImpl();
-//		theCourseDao.delete(600);
-
-		// ======================================
-		// get all courses
-//		Dao<Course> theCourseDao = new CourseDaoImpl();
-//		List<Course> allCourses = theCourseDao.getAll();
-//		for (Course c : allCourses) {
-//			System.out.println(c.toString());
-//		}
+------- CREATE A COURSE
+		CourseBuilder cb = new CourseBuilder();
+		Course sbCourse = cb.prepareCourse("Spring Boot");
+		Chapter sbChapter1 = cb.prepareChapter(sbCourse, "Chapter 1", 1);
+		cb.addChapterToCourse(sbCourse, sbChapter1);
+		Page sbPage1 = cb.preparePage(sbChapter1, "Section 1", 1);
+		cb.addPagetoChapter(sbChapter1, sbPage1);
+		System.out.println("LOG: " + sbCourse);
 		
-		// ======================================
-
-		// update an existing course
-		Dao<Course> theCourseDao = new CourseDaoImpl();
-		theCourseDao.update(new Course(300, null, "MySQL", null));
-	
-	
--------
+------- PERSIST A COURSE
+		CourseDaoImpl cDao = new CourseDaoImpl();
+		cDao.add(sbCourse);
+		
+		ChapterDaoImpl chDao = new ChapterDaoImpl();
+		chDao.add(sbChapter1);
+		
+		PageDaoImpl pDao = new PageDaoImpl();
+		pDao.add(sbPage1);
+		
+		cDao.addChapterToCourse(sbChapter1, sbCourse);
+		chDao.addPagetoChapter(sbPage1, sbChapter1);

@@ -64,23 +64,25 @@ public class Page implements Serializable, Comparable<Page> {
 	@Override
 	public String toString() {
 		return "Page [id=" + id + ", components=" + components + ", title=" + title + ", number=" + number
-				+ ", chapter=" + chapter + "]";
+				+ ", chapter=" + chapter.getId() + "]";
 	}
 
 	@Override
 	public int compareTo(Page o) {
-		// parse and get the page numbers
+		// extract and get the chapter numbers
 		// e.g: CJ100CH100PG1 = 1
-//		String thisPageNumber = this.id.substring(12);
-//		String otherPageNumber = o.getId().substring(12);
-//
-//		if (this.id.equals(o.getId()))
-//			return 0;
-//		else if (Integer.parseInt(thisPageNumber) > Integer.parseInt(otherPageNumber))
-//			return 1;
-//		else
-//			return -1;
-		return 0;
+		Integer thisPage = Integer.parseInt(this.id.substring(12));
+		Integer otherPage = Integer.parseInt(o.getId().substring(12));
+		// test log: System.out.println(thisPage + " " + otherPage);
+
+		// comparison logic
+		if (this.id == o.getId()) {
+			return 0;
+		} else if (thisPage > otherPage) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 
 }
