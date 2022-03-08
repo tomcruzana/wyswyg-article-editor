@@ -46,13 +46,13 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 	}
 
 	@Override
-	public void delete(int id) throws SQLException {
+	public void delete(String id) throws SQLException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Chapter get(int id) throws SQLException {
+	public Chapter get(String id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

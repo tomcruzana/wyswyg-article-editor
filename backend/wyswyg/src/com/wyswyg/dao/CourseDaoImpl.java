@@ -2,6 +2,7 @@ package com.wyswyg.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
@@ -43,14 +44,14 @@ public class CourseDaoImpl implements Dao<Course> {
 	}
 
 	@Override
-	public void delete(int id) throws SQLException {
+	public void delete(String id) throws SQLException {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			System.out.println("LOG: connection success! " + this.getClass());
 			ps = dbCon.prepareStatement("DELETE FROM course WHERE id = ?");
-			ps.setInt(1, id);
+			ps.setString(1, id);
 			int rowCount = ps.executeUpdate();
 
 			System.out.println("LOG: " + rowCount + " row deleted!");
@@ -63,78 +64,84 @@ public class CourseDaoImpl implements Dao<Course> {
 	}
 
 	@Override
-	public Course get(int id) throws SQLException {
-//		Course theCourse = null;
-//		PreparedStatement ps;
-//
-//		// setup and create a prepared statement
-//		try (Connection dbCon = DbConnector.getConnection();) {
-//			System.out.println("LOG: connection success!");
-//			ps = dbCon.prepareStatement("SELECT * FROM course WHERE id = ?");
-//			ps.setInt(1, id);
-//
-//			// get the result set and move cursor to the first row
-//			ResultSet resultSet = ps.executeQuery();
-//			resultSet.next();
-//
-//			// initialize and return course object
-//			theCourse = new Course(resultSet.getInt("id"), null, resultSet.getString("title"),
-//					resultSet.getDate("date_created"));
-//			System.out.println("LOG: sql query executed");
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return theCourse;
-		return null;
+	public Course get(String id) throws SQLException {
+		Course theCourse = null;
+		PreparedStatement ps;
+
+		// setup and create a prepared statement
+		try (Connection dbCon = DbConnector.getConnection();) {
+			System.out.println("LOG: connection success!");
+			ps = dbCon.prepareStatement("SELECT * FROM course WHERE id = ?");
+			ps.setString(1, id);
+
+			// get the result set and move cursor to the first row
+			ResultSet resultSet = ps.executeQuery();
+
+			if (resultSet.next()) {
+				// initialize and return course object
+				theCourse = new Course();
+				theCourse.setId(resultSet.getString("id"));
+				theCourse.setTitle(resultSet.getString("title"));
+				theCourse.setDateCreated(resultSet.getDate("date_created"));
+				System.out.println("LOG: sql query executed");
+			} else {
+				System.out.println("LOG: no courses found!");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return theCourse;
 	}
 
 	@Override
 	public List<Course> getAll() throws SQLException {
-//		PreparedStatement ps;
-//		List<Course> courseList = new ArrayList<>();
-//
-//		// setup and create a prepared statement
-//		try (Connection dbCon = DbConnector.getConnection();) {
-//			System.out.println("LOG: connection success!");
-//			ps = dbCon.prepareStatement("SELECT * FROM course ORDER BY id ASC");
-//			ResultSet resultSet = ps.executeQuery();
-//
-//			while (resultSet.next()) {
-//				courseList.add(new Course(resultSet.getInt("id"), null, resultSet.getString("title"),
-//						resultSet.getDate("date_created")));
-//			}
-//			System.out.println("LOG: sql query executed");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return courseList;
-		return null;
+		PreparedStatement ps;
+		List<Course> courseList = new ArrayList<>();
+
+		// setup and create a prepared statement
+		try (Connection dbCon = DbConnector.getConnection();) {
+			System.out.println("LOG: connection success!");
+			ps = dbCon.prepareStatement("SELECT * FROM course ORDER BY id ASC");
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				courseList.add(new Course(resultSet.getString("id"), null, resultSet.getString("title"),
+						resultSet.getDate("date_created")));
+			}
+			System.out.println("LOG: sql query executed");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return courseList;
 	}
 
 	@Override
 	public void update(Course course) throws SQLException {
-//		PreparedStatement ps;
-//
-//		// setup and create a prepared statement
-//		try (Connection dbCon = DbConnector.getConnection();) {
-//			System.out.println("LOG: connection success!");
-//			ps = dbCon.prepareStatement("UPDATE course SET title = ? WHERE id = ?");
-//			ps.setString(1, course.getTitle());
-//			ps.setInt(2, course.getId());
-//
-//			int rowCount = ps.executeUpdate();
-//			System.out.println("LOG: " + rowCount + " row updated!");
-//			System.out.println("LOG: sql update executed");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		PreparedStatement ps;
+
+		// setup and create a prepared statement
+		try (Connection dbCon = DbConnector.getConnection();) {
+			System.out.println("LOG: connection success!");
+			ps = dbCon.prepareStatement("UPDATE course SET title = ?, date_created = ?  WHERE id = ?");
+			ps.setString(1, course.getTitle());
+			ps.setDate(2, course.getDateCreated());
+			ps.setString(3, course.getId());
+			// TODO: ps.setString(4, course.getChapters()); junction table needed
+
+			int rowCount = ps.executeUpdate();
+			System.out.println("LOG: " + rowCount + " row updated!");
+			System.out.println("LOG: sql update executed");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int addChapterToCourse(Chapter chapter, Course course) throws SQLException {

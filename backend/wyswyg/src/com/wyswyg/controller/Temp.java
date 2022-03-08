@@ -1,6 +1,8 @@
 package com.wyswyg.controller;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
@@ -23,8 +25,14 @@ public class Temp {
 		String jurl = PropertiesConfigurationFactory.getPropertiesConfiguration("app.db.url");
 
 		System.out.printf("%s %s \n%s \n%s \n", title, version, jdriver, jurl);
-		System.out.println("Log: connection successful");
+		System.out.println("LOG: connection successful");
 
+		// TO-DO: cascade on delete
+		// TO-DO: get class names
+
+		// cdi.delete("SP200");
+		
+		
 		
 	}
 

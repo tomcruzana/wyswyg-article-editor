@@ -1,4 +1,4 @@
-------- CREATE A COURSE
+------- CREATE A COURSE OBJ
 		CourseBuilder cb = new CourseBuilder();
 		Course sbCourse = cb.prepareCourse("Spring Boot");
 		Chapter sbChapter1 = cb.prepareChapter(sbCourse, "Chapter 1", 1);
@@ -7,7 +7,7 @@
 		cb.addPagetoChapter(sbChapter1, sbPage1);
 		System.out.println("LOG: " + sbCourse);
 		
-------- PERSIST A COURSE
+------- PERSIST A COURSE TO DB
 		CourseDaoImpl cDao = new CourseDaoImpl();
 		cDao.add(sbCourse);
 		
@@ -19,3 +19,17 @@
 		
 		cDao.addChapterToCourse(sbChapter1, sbCourse);
 		chDao.addPagetoChapter(sbPage1, sbChapter1);
+		
+------- READ A COURSE FROM DB
+		CourseDaoImpl cdi = new CourseDaoImpl();
+		Course course = cdi.get("CJ100");
+		System.out.println(course);
+
+------- READ ALL COURSE FROM DB		
+		CourseDaoImpl cdi = new CourseDaoImpl();
+		List<Course> all = cdi.getAll();
+		all.forEach(e -> System.out.println(e));
+
+------- UPDATE A COURSE ON A DB			
+		CourseDaoImpl cdi = new CourseDaoImpl();
+		cdi.update(new Course("SP200", null, "Spring Boot", Date.valueOf("2021-02-24")));

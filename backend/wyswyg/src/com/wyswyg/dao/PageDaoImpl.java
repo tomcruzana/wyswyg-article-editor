@@ -42,13 +42,13 @@ public class PageDaoImpl implements Dao<Page> {
 	}
 
 	@Override
-	public void delete(int id) throws SQLException {
+	public void delete(String id) throws SQLException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Page get(int id) throws SQLException {
+	public Page get(String id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
