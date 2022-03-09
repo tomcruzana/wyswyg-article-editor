@@ -1,27 +1,45 @@
-/* ID format CR100-CH100-PG100 */
+/* create tables */
+CREATE TABLE course ( 
+    id VARCHAR2(150), 
+    title VARCHAR2(150) NOT NULL UNIQUE,   
+    date_created DATE NOT NULL,
+    CONSTRAINT course_cid_pk PRIMARY KEY (id)
+);
 
-/* insert data */
-INSERT INTO course VALUES('CJ100', 'Core Java', SYSDATE,  NULL);
-INSERT INTO chapter VALUES('CJ100CH100', 'Introduction', 1,  NULL, 'CJ100');
-INSERT INTO page VALUES('CJ100CH100PG1', '<p>welcome</p>', 'section 1: history', 1,'CJ100CH100');
+CREATE TABLE chapter ( 
+    id VARCHAR2(150),
+    title VARCHAR2(150) NOT NULL,   
+    chapter_number INTEGER,
+    course_id VARCHAR2(150),
+    CONSTRAINT chapter_chid_pk PRIMARY KEY (id)
+);
 
-UPDATE course
-SET chapter_id = 'CJ100CH100'
-WHERE id = 'CJ100';
+CREATE TABLE page ( 
+    id VARCHAR2(150),
+    components VARCHAR2(4000) NOT NULL, /* temp: update to CLOB */
+    title VARCHAR2(150) NOT NULL,   
+    page_number INTEGER,
+    chapter_id VARCHAR2(150),
+    CONSTRAINT page_pid_pk PRIMARY KEY (id)
+);
 
-UPDATE chapter
-SET page_id = 'CJ100CH100PG1'
-WHERE id = 'CJ100CH100';
+ALTER TABLE chapter
+ADD CONSTRAINT course_cid_fk FOREIGN KEY(course_id) REFERENCES course(id)
+ON DELETE CASCADE;
 
-/* queries */
-SELECT * FROM course;
-SELECT * FROM chapter;
-SELECT * FROM page;
-SELECT * FROM course, chapter, page;
+ALTER TABLE page
+ADD CONSTRAINT page_chapter_chid_fk FOREIGN KEY(chapter_id) REFERENCES chapter(id)
+ON DELETE CASCADE;
 
-SELECT * FROM ((course INNER JOIN chapter ON course.chapter_id = chapter.id) INNER JOIN page ON chapter.page_id = page.id);
+COMMIT;
 
-/* delete records */
-DELETE FROM course c WHERE c.id = 'CJ100';
-DELETE FROM chapter ch WHERE ch.id = 'CJ100CH100';
-DELETE FROM page p WHERE p.id = 'CJ100CH100PG1';
+/* delete data */
+ALTER TABLE chapter
+DROP CONSTRAINT course_cid_fk;
+
+ALTER TABLE page
+DROP CONSTRAINT page_chapter_chid_fk;
+
+DROP TABLE course;
+DROP TABLE chapter;
+DROP TABLE page;

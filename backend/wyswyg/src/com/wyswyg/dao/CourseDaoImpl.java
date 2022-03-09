@@ -54,8 +54,12 @@ public class CourseDaoImpl implements Dao<Course> {
 			ps.setString(1, id);
 			int rowCount = ps.executeUpdate();
 
-			System.out.println("LOG: " + rowCount + " row deleted!");
-			System.out.println("LOG: sql update executed");
+			if (rowCount > 0) {
+				System.out.println("LOG: " + rowCount + " row deleted!");
+				System.out.println("LOG: sql update executed");
+			} else {
+				System.out.println("LOG: no records found!");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

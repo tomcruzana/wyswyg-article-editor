@@ -27,13 +27,6 @@ public class Temp {
 		System.out.printf("%s %s \n%s \n%s \n", title, version, jdriver, jurl);
 		System.out.println("LOG: connection successful");
 
-		// TO-DO: cascade on delete
-		// TO-DO: get class names
-
-		// cdi.delete("SP200");
-		
-		
-		
 	}
 
 }

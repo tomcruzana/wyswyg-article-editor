@@ -33,3 +33,7 @@
 ------- UPDATE A COURSE ON A DB			
 		CourseDaoImpl cdi = new CourseDaoImpl();
 		cdi.update(new Course("SP200", null, "Spring Boot", Date.valueOf("2021-02-24")));
+
+------- DELETE A COURSE ON A DB				
+		CourseDaoImpl cdi = new CourseDaoImpl();
+		cdi.delete("CJ100");
