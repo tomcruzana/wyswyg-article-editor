@@ -1,3 +1,10 @@
+------- LOG4J LOGGER
+		log.info("Hello");
+		log.debug("Hello");
+		log.warn("Hello");
+		log.error("Hello");
+		log.fatal("Hello");
+
 ------- CREATE A COURSE OBJ
 		CourseBuilder cb = new CourseBuilder();
 		Course sbCourse = cb.prepareCourse("Spring Boot");

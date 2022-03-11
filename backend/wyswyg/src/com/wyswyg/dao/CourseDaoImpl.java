@@ -8,36 +8,41 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.wyswyg.controller.Temp;
 import com.wyswyg.domain.Chapter;
 import com.wyswyg.domain.Course;
 import com.wyswyg.utils.DbConnector;
 
 public class CourseDaoImpl implements Dao<Course> {
+	private static Logger log = Logger.getLogger(CourseDaoImpl.class);
 
 	@Override
 	public int add(Course obj) {
 		// convert obj to a course object
 		Course theCourse = obj;
-		System.out.println("LOG: conversion success!");
-		System.out.println("LOG: " + theCourse.toString());
+		log.info("Conversion successful");
+		log.info(theCourse.toString());
 
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
-			ps = dbCon.prepareStatement("INSERT INTO course VALUES(?, ?, ?, ?)");
+			log.info("Connection success");
+
+			ps = dbCon.prepareStatement("INSERT INTO course VALUES(?, ?, ?)");
 			ps.setString(1, theCourse.getId());
 			ps.setString(2, theCourse.getTitle());
 			ps.setDate(3, theCourse.getDateCreated());
-			ps.setNull(4, Types.NULL);
 			rowsAffected = ps.executeUpdate();
-			System.out.println("LOG: sql update executed");
+
+			log.info("SQL update executed");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 
 		return rowsAffected;
@@ -49,21 +54,22 @@ public class CourseDaoImpl implements Dao<Course> {
 
 		// setup and create a prepared statement
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success! " + this.getClass());
+			log.info("Connection success! " + this.getClass());
+
 			ps = dbCon.prepareStatement("DELETE FROM course WHERE id = ?");
 			ps.setString(1, id);
 			int rowCount = ps.executeUpdate();
 
 			if (rowCount > 0) {
-				System.out.println("LOG: " + rowCount + " row deleted!");
-				System.out.println("LOG: sql update executed");
+				log.info(rowCount + " row deleted!");
+				log.info("SQL update executed");
 			} else {
-				System.out.println("LOG: no records found!");
+				log.info("No records found!");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 	}
 
@@ -74,7 +80,7 @@ public class CourseDaoImpl implements Dao<Course> {
 
 		// setup and create a prepared statement
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			log.info("Connection success!");
 			ps = dbCon.prepareStatement("SELECT * FROM course WHERE id = ?");
 			ps.setString(1, id);
 
@@ -87,15 +93,15 @@ public class CourseDaoImpl implements Dao<Course> {
 				theCourse.setId(resultSet.getString("id"));
 				theCourse.setTitle(resultSet.getString("title"));
 				theCourse.setDateCreated(resultSet.getDate("date_created"));
-				System.out.println("LOG: sql query executed");
+				log.info("SQL query executed");
 			} else {
-				System.out.println("LOG: no courses found!");
+				log.info("No courses found!");
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 
 		return theCourse;
@@ -108,7 +114,8 @@ public class CourseDaoImpl implements Dao<Course> {
 
 		// setup and create a prepared statement
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			log.info("Connection success!");
+
 			ps = dbCon.prepareStatement("SELECT * FROM course ORDER BY id ASC");
 			ResultSet resultSet = ps.executeQuery();
 
@@ -116,11 +123,11 @@ public class CourseDaoImpl implements Dao<Course> {
 				courseList.add(new Course(resultSet.getString("id"), null, resultSet.getString("title"),
 						resultSet.getDate("date_created")));
 			}
-			System.out.println("LOG: sql query executed");
+			log.info("SQL query executed");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 		return courseList;
 	}
@@ -131,34 +138,34 @@ public class CourseDaoImpl implements Dao<Course> {
 
 		// setup and create a prepared statement
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			log.info("Connection success!");
+
 			ps = dbCon.prepareStatement("UPDATE course SET title = ?, date_created = ?  WHERE id = ?");
 			ps.setString(1, course.getTitle());
 			ps.setDate(2, course.getDateCreated());
 			ps.setString(3, course.getId());
-			// TODO: ps.setString(4, course.getChapters()); junction table needed
 
 			int rowCount = ps.executeUpdate();
-			System.out.println("LOG: " + rowCount + " row updated!");
-			System.out.println("LOG: sql update executed");
+			log.info(rowCount + " row updated!");
+			log.info("SQL update executed");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 	}
 
 	public int addChapterToCourse(Chapter chapter, Course course) throws SQLException {
 		// convert obj to a course object
 		Course theCourse = course;
-		System.out.println("LOG: conversion success!");
-		System.out.println("LOG: " + theCourse.toString());
+		log.info("Conversion success!");
+		log.info(theCourse.toString());
 
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			log.info("Connection success!");
 			ps = dbCon.prepareStatement("UPDATE course SET chapter_id = ? WHERE id = ?");
 
 			// To-Do: create a reusable method for this and move to utils package
@@ -167,12 +174,12 @@ public class CourseDaoImpl implements Dao<Course> {
 			ps.setString(2, theCourse.getId());
 
 			rowsAffected = ps.executeUpdate();
-			System.out.println("LOG: sql update executed");
+			log.info("SQL update executed");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 
 		return rowsAffected;

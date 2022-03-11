@@ -7,25 +7,28 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.wyswyg.domain.Chapter;
 import com.wyswyg.domain.Course;
 import com.wyswyg.domain.Page;
 import com.wyswyg.utils.DbConnector;
 
 public class ChapterDaoImpl implements Dao<Chapter> {
+	private static Logger log = Logger.getLogger(ChapterDaoImpl.class);
 
 	@Override
 	public int add(Chapter obj) throws SQLException {
 		// convert obj to a chapter object
 		Chapter theChapter = obj;
-		System.out.println("LOG: conversion success!");
-		System.out.println("LOG: " + theChapter.toString());
+		log.info("Conversion success!");
+		log.info(theChapter.toString());
 
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			log.info("Connection success!");
 			ps = dbCon.prepareStatement("INSERT INTO chapter VALUES(?, ?, ?, ?, ?)");
 			ps.setString(1, theChapter.getId());
 			ps.setString(2, theChapter.getTitle());
@@ -34,12 +37,12 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 			ps.setString(5, theChapter.getCourse().getId());
 
 			rowsAffected = ps.executeUpdate();
-			System.out.println("LOG: sql update executed");
+			log.info("SQL update executed");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 
 		return rowsAffected;

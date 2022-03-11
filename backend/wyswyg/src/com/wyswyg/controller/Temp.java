@@ -14,18 +14,26 @@ import com.wyswyg.domain.Course;
 import com.wyswyg.domain.Page;
 import com.wyswyg.utils.CourseBuilder;
 import com.wyswyg.utils.PropertiesConfigurationFactory;
+import org.apache.log4j.Appender;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Layout;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
 
 public class Temp {
 
+	private static Logger log = Logger.getLogger(Temp.class);
+
 	public static void main(String[] args) throws SQLException, ConfigurationException {
-		System.out.println("Log: starting app");
+		log.info("Initializing app...");
 		String title = PropertiesConfigurationFactory.getPropertiesConfiguration("app.title");
 		String version = PropertiesConfigurationFactory.getPropertiesConfiguration("app.version");
 		String jdriver = PropertiesConfigurationFactory.getPropertiesConfiguration("app.db.jdbcdriver");
 		String jurl = PropertiesConfigurationFactory.getPropertiesConfiguration("app.db.url");
 
-		System.out.printf("%s %s \n%s \n%s \n", title, version, jdriver, jurl);
-		System.out.println("LOG: connection successful");
+		log.info(title + " " + version);
+		log.info(jdriver + " " + jurl);
+		log.info("App initialization success!");
 
 	}
 

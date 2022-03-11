@@ -4,7 +4,7 @@
 INSERT INTO course VALUES('CJ100', 'Core Java', SYSDATE);
 INSERT INTO chapter VALUES('CJ100CH100', 'Introduction', 1, 'CJ100');
 INSERT INTO page VALUES('CJ100CH100PG1', '<p>welcome</p>', 'section 1: history', 1,'CJ100CH100');
-
+COMMIT;
 /* queries */
 SELECT * FROM course;
 SELECT * FROM chapter;

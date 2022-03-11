@@ -21,5 +21,7 @@
 	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-lang3-3.10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/commons-text-1.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tomcr/Desktop/projects/software-modules/WYSWYG/backend/wyswyg/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -5,23 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.wyswyg.domain.Page;
 import com.wyswyg.utils.DbConnector;
 
 public class PageDaoImpl implements Dao<Page> {
-
+	private static Logger log = Logger.getLogger(PageDaoImpl.class);
+	
 	@Override
 	public int add(Page obj) throws SQLException {
 		// convert obj to a page object
 		Page thePage = obj;
-		System.out.println("LOG: conversion success!");
-		System.out.println("LOG: " + thePage.toString());
+		log.info("Conversion success!");
+		log.info(thePage.toString());
 
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
 		try (Connection dbCon = DbConnector.getConnection();) {
-			System.out.println("LOG: connection success!");
+			log.info("Connection success!");
 			ps = dbCon.prepareStatement("INSERT INTO page VALUES(?, ?, ?, ?, ?)");
 			ps.setString(1, thePage.getId());
 			ps.setString(2, thePage.getComponents());
@@ -30,12 +33,12 @@ public class PageDaoImpl implements Dao<Page> {
 			ps.setString(5, thePage.getChapter().getId());
 
 			rowsAffected = ps.executeUpdate();
-			System.out.println("LOG: sql update executed");
+			log.info("SQL update executed");
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("An error occured. ", e);
 		}
 
 		return rowsAffected;
