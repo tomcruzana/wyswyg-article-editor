@@ -155,34 +155,4 @@ public class CourseDaoImpl implements Dao<Course> {
 		}
 	}
 
-	public int addChapterToCourse(Chapter chapter, Course course) throws SQLException {
-		// convert obj to a course object
-		Course theCourse = course;
-		log.info("Conversion success!");
-		log.info(theCourse.toString());
-
-		// setup and create a prepared statement
-		PreparedStatement ps;
-		int rowsAffected = 0;
-		try (Connection dbCon = DbConnector.getConnection();) {
-			log.info("Connection success!");
-			ps = dbCon.prepareStatement("UPDATE course SET chapter_id = ? WHERE id = ?");
-
-			// To-Do: create a reusable method for this and move to utils package
-			String chapterId = new ArrayList<>(theCourse.getChapters()).get(0).getId();
-			ps.setString(1, chapterId);
-			ps.setString(2, theCourse.getId());
-
-			rowsAffected = ps.executeUpdate();
-			log.info("SQL update executed");
-
-		} catch (SQLException e) {
-			log.error("An error occured. ", e);
-		} catch (Exception e) {
-			log.error("An error occured. ", e);
-		}
-
-		return rowsAffected;
-	}
-
 }

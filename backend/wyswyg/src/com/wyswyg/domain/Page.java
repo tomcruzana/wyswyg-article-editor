@@ -64,7 +64,7 @@ public class Page implements Serializable, Comparable<Page> {
 	@Override
 	public String toString() {
 		return "Page [id=" + id + ", components=" + components + ", title=" + title + ", number=" + number
-				+ ", chapter=" + chapter.getId() + "]";
+				+ ", chapter=" + chapter + "]";
 	}
 
 	@Override

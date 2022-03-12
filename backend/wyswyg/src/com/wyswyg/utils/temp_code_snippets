@@ -1,3 +1,8 @@
+------- TS TIPS:
+		-make sure to commit
+		-recreate tables
+		-restart oracle service
+
 ------- LOG4J LOGGER
 		log.info("Hello");
 		log.debug("Hello");
@@ -7,40 +12,62 @@
 
 ------- CREATE A COURSE OBJ
 		CourseBuilder cb = new CourseBuilder();
-		Course sbCourse = cb.prepareCourse("Spring Boot");
-		Chapter sbChapter1 = cb.prepareChapter(sbCourse, "Chapter 1", 1);
-		cb.addChapterToCourse(sbCourse, sbChapter1);
-		Page sbPage1 = cb.preparePage(sbChapter1, "Section 1", 1);
-		cb.addPagetoChapter(sbChapter1, sbPage1);
-		System.out.println("LOG: " + sbCourse);
+		Course course = cb.prepareCourse("LV100", "Laravel");
+		Chapter chapter1 = cb.prepareChapter("SP100CH100", "History of Laravel", 1, course);
+		Page page1 = cb.preparePage("LV100CH100PG100", "<p>Lorem ipsum dolor</p>", "Section 1: History", 1, chapter1);
 		
-------- PERSIST A COURSE TO DB
-		CourseDaoImpl cDao = new CourseDaoImpl();
-		cDao.add(sbCourse);
+------- PERSIST TO DB
+		CourseDaoImpl cdi = new CourseDaoImpl();
+		int rs = cdi.add(course);
 		
-		ChapterDaoImpl chDao = new ChapterDaoImpl();
-		chDao.add(sbChapter1);
+		ChapterDaoImpl chdi = new ChapterDaoImpl();
+		int rs = chdi.add(chapter1);
 		
-		PageDaoImpl pDao = new PageDaoImpl();
-		pDao.add(sbPage1);
+		PageDaoImpl pdi = new PageDaoImpl();
+		int rs = pdi.add(page1);
 		
-		cDao.addChapterToCourse(sbChapter1, sbCourse);
-		chDao.addPagetoChapter(sbPage1, sbChapter1);
-		
-------- READ A COURSE FROM DB
+------- READ FROM DB
 		CourseDaoImpl cdi = new CourseDaoImpl();
 		Course course = cdi.get("CJ100");
 		System.out.println(course);
+		
+		ChapterDaoImpl chdi = new ChapterDaoImpl();
+		Chapter chapter = chdi.get("CJ100CH100");
+		System.out.println(chapter);
+		
+		PageDaoImpl pdi = new PageDaoImpl();
+		Page page = pdi.get("NJ400CH100PG100");
+		System.out.println(page);
 
-------- READ ALL COURSE FROM DB		
+------- READ ALL FROM DB		
 		CourseDaoImpl cdi = new CourseDaoImpl();
-		List<Course> all = cdi.getAll();
-		all.forEach(e -> System.out.println(e));
+		List<Course> allCourses = cdi.getAll();
+		allCourses.forEach(c -> System.out.println(c));
+		
+		ChapterDaoImpl chdi = new ChapterDaoImpl();
+		List<Chapter> allChapters = chdi.getAll();
+		allChapters.forEach(ch->System.out.println(ch));
+		
+		PageDaoImpl pdi = new PageDaoImpl();
+		List<Page> allPage = pdi.getAll();
+		allPage.forEach(p->System.out.println(p));
 
-------- UPDATE A COURSE ON A DB			
+------- UPDATE TO DB			
 		CourseDaoImpl cdi = new CourseDaoImpl();
-		cdi.update(new Course("SP200", null, "Spring Boot", Date.valueOf("2021-02-24")));
+		cdi.update(new Course("SP200", null, "Spring Booty!", Date.valueOf("2022-02-24")));
+		
+		ChapterDaoImpl ccdi = new ChapterDaoImpl();
+		ccdi.update(new Chapter("CJ100CH100", null, "Introduction 1", 1, null));
+		
+		PageDaoImpl phdi = new PageDaoImpl();
+		phdi.update(page1);
 
-------- DELETE A COURSE ON A DB				
+------- DELETE FROM DB				
 		CourseDaoImpl cdi = new CourseDaoImpl();
 		cdi.delete("CJ100");
+		
+		ChapterDaoImpl chdi = new ChapterDaoImpl();
+		chdi.delete("CJ100CH400");
+		
+		PageDaoImpl phdi = new PageDaoImpl();
+		chdi.delete("NJ400CH100PG100");

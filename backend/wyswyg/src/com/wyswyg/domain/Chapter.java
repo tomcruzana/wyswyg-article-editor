@@ -65,7 +65,7 @@ public class Chapter implements Serializable, Comparable<Chapter> {
 	@Override
 	public String toString() {
 		return "Chapter [id=" + id + ", pages=" + pages + ", title=" + title + ", number=" + number + ", course="
-				+ course.getId() + "]";
+				+ course + "]";
 	}
 
 	@Override
