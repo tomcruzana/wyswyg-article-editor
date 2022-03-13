@@ -3,15 +3,16 @@ package com.wyswyg.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.Servlet;
+import javax.servlet.GenericServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/homepage")
-public class Homepage implements Servlet {
+@SuppressWarnings("serial")
+@WebServlet("/dis")
+public class Homepage extends GenericServlet {
 
 	@Override
 	public void destroy() {
@@ -25,7 +26,7 @@ public class Homepage implements Servlet {
 
 	@Override
 	public String getServletInfo() {
-		return "Homepage";
+		return "index";
 	}
 
 	@Override
@@ -36,10 +37,12 @@ public class Homepage implements Servlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		System.out.println("Request Handling process....");
+		String username = req.getParameter("uname");
+		
 		// Output on Console
 		PrintWriter pw = res.getWriter();
 		res.setContentType("text/html");
-		pw.println("Welcome to Servlet Programming...");
+		pw.println("Way to go, "+username+"! Welcome to Servlet Programming...");
 		// response onto WebBrowser
 
 	}
