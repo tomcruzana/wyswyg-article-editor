@@ -9,7 +9,7 @@ CREATE TABLE course (
 CREATE TABLE chapter ( 
     id VARCHAR2(150),
     title VARCHAR2(150) NOT NULL,   
-    chapter_number INTEGER,
+    chapter_number INTEGER UNIQUE NOT NULL,
     course_id VARCHAR2(150),
     CONSTRAINT chapter_chid_pk PRIMARY KEY (id)
 );
@@ -18,7 +18,7 @@ CREATE TABLE page (
     id VARCHAR2(150),
     components VARCHAR2(4000) NOT NULL, /* temp: update to CLOB */
     title VARCHAR2(150) NOT NULL,   
-    page_number INTEGER,
+    page_number INTEGER UNIQUE NOT NULL,
     chapter_id VARCHAR2(150),
     CONSTRAINT page_pid_pk PRIMARY KEY (id)
 );
@@ -43,3 +43,4 @@ DROP CONSTRAINT page_chapter_chid_fk;
 DROP TABLE course;
 DROP TABLE chapter;
 DROP TABLE page;
+COMMIT;
