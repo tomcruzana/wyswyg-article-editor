@@ -1,0 +1,32 @@
+.j-shadow {
+  z-index: 9999;
+  box-shadow: 2px 2px 6px -1px rgba(133, 132, 132, 0.5);
+  -webkit-box-shadow: 2px 2px 6px -1px rgba(133, 132, 132, 0.5);
+  -moz-box-shadow: 2px 2px 6px -1px rgba(133, 132, 132, 0.5);
+}
+
+.j-sidebar {
+  width: 30%;
+  height: auto;
+  background-color: #fafbfc !important;
+  border-right: 1px solid #e6e6e6 !important;
+}
+
+.j-arrow-left{
+  position: absolute;
+  right: -10px;
+}
+
+.videosizer {
+  width: 640px;
+}
+
+/* component <- move to a diff css module
+.component {
+  border: 1px solid transparent;
+}
+
+.component:hover {
+  border: 1px solid cyan;
+}
+ */
