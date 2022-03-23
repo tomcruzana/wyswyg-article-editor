@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+	import="com.wyswyg.domain.Course, java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,22 +23,15 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous" />
 
-<title>ZXV Learning | Admin Login</title>
+<title>ZXV Learning | Login</title>
 </head>
 <body>
-	<nav class="navbar navbar-light navbar-expand-lg j-shadow">
-		<a class="navbar-brand" href="#"> <i
-			class="fa-solid fa-user-astronaut"></i> Admin Login
-		</a>
-		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="index.html">Home</a>
-			</li>
-		</ul>
-	</nav>
+	<!-- admin navbar goes here-->
+	<jsp:include page="adminnavbar.html"></jsp:include>
 
 	<div class="container-fluid form-container my-5">
 		<h1 class="mb-3">Sign In</h1>
-		<form id="loginForm" action="" method="GET">
+		<form id="loginForm" action="login" method="POST">
 			<div class="form-group">
 				<label for="exampleInputUsername1">Username</label> <input
 					type="text" class="form-control" id="exampleInputUsername1"

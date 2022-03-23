@@ -28,7 +28,8 @@ public class CourseDaoImpl implements Dao<Course> {
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success");
 
 			ps = dbCon.prepareStatement("INSERT INTO course VALUES(?, ?, ?)");
@@ -53,7 +54,8 @@ public class CourseDaoImpl implements Dao<Course> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success! " + this.getClass());
 
 			ps = dbCon.prepareStatement("DELETE FROM course WHERE id = ?");
@@ -79,7 +81,8 @@ public class CourseDaoImpl implements Dao<Course> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 			ps = dbCon.prepareStatement("SELECT * FROM course WHERE id = ?");
 			ps.setString(1, id);
@@ -107,13 +110,40 @@ public class CourseDaoImpl implements Dao<Course> {
 		return theCourse;
 	}
 
+	public List<Course> getCoursesByTitle(String title) throws SQLException {
+		PreparedStatement ps;
+		List<Course> courseList = new ArrayList<>();
+
+		// setup and create a prepared statement
+		try {
+			Connection dbCon = DbConnector.getConnection();
+			log.info("Connection success!");
+
+			ps = dbCon.prepareStatement("SELECT * FROM course WHERE title LIKE ? ORDER BY id ASC");
+			ps.setString(1, "%" + title + "%");
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				courseList.add(new Course(resultSet.getString("id"), null, resultSet.getString("title"),
+						resultSet.getDate("date_created")));
+			}
+			log.info("SQL query executed");
+		} catch (SQLException e) {
+			log.error("An error occured. ", e);
+		} catch (Exception e) {
+			log.error("An error occured. ", e);
+		}
+		return courseList;
+	}
+
 	@Override
 	public List<Course> getAll() throws SQLException {
 		PreparedStatement ps;
 		List<Course> courseList = new ArrayList<>();
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 
 			ps = dbCon.prepareStatement("SELECT * FROM course ORDER BY id ASC");
@@ -137,7 +167,8 @@ public class CourseDaoImpl implements Dao<Course> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 
 			ps = dbCon.prepareStatement("UPDATE course SET title = ?, date_created = ?  WHERE id = ?");

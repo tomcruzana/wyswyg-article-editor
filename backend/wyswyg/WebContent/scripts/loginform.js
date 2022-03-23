@@ -20,7 +20,7 @@ loginForm.submit.addEventListener("click", (e) => {
     alert("Please enter your valid username and password");
   } else if (username == "admin" && password == "password123") {
     rememberUser();
-    location.href = "editor.html";
+    location.href = "login";
   } else {
     alert("Sorry, the username or password is incorrect.\nPlease try again.");
   }

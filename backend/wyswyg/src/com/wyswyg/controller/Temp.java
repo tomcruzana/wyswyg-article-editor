@@ -35,14 +35,9 @@ public class Temp {
 		log.info(jdriver + " " + jurl);
 		log.info("App initialization success!");
 
-		CourseBuilder cb = new CourseBuilder();
-		Course course = cb.prepareCourse("NJ400", "Node.js");
-		Chapter chapter1 = cb.prepareChapter("NJ400CH100", "History of Node.js", 1, course);
-		Page page1 = cb.preparePage("NJ400CH100PG100", "<p>Lorem ipsum dolor</p>", "Section 1: History of Node.js", 1, chapter1);
-	
-		ChapterDaoImpl chdi = new ChapterDaoImpl();
-		List<Chapter> allChapters = chdi.getAll();
-		allChapters.forEach(ch->System.out.println(ch));
+		CourseDaoImpl cdi = new CourseDaoImpl();
+		List<Course> allCourses = cdi.getAll();
+		allCourses.forEach(c -> System.out.println(c));
 	}
 
 }

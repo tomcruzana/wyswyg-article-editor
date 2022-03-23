@@ -27,7 +27,8 @@ public class PageDaoImpl implements Dao<Page> {
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 			ps = dbCon.prepareStatement("INSERT INTO page VALUES(?, ?, ?, ?, ?)");
 			ps.setString(1, thePage.getId());
@@ -53,7 +54,8 @@ public class PageDaoImpl implements Dao<Page> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success! " + this.getClass());
 
 			ps = dbCon.prepareStatement("DELETE FROM page WHERE id = ?");
@@ -80,7 +82,8 @@ public class PageDaoImpl implements Dao<Page> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 			ps = dbCon.prepareStatement("SELECT * FROM page WHERE id = ?");
 			ps.setString(1, id);
@@ -121,7 +124,8 @@ public class PageDaoImpl implements Dao<Page> {
 		List<Page> pageList = new ArrayList<>();
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 
 			ps = dbCon.prepareStatement("SELECT * FROM page ORDER BY id ASC");
@@ -146,7 +150,8 @@ public class PageDaoImpl implements Dao<Page> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 
 			ps = dbCon.prepareStatement("UPDATE page SET components = ?, title = ?, page_number = ? WHERE id = ?");

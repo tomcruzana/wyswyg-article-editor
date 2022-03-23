@@ -28,7 +28,8 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 		// setup and create a prepared statement
 		PreparedStatement ps;
 		int rowsAffected = 0;
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 			ps = dbCon.prepareStatement("INSERT INTO chapter VALUES(?, ?, ?, ?)");
 			ps.setString(1, theChapter.getId());
@@ -44,7 +45,6 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 		} catch (Exception e) {
 			log.error("An error occured. ", e);
 		}
-
 		return rowsAffected;
 	}
 
@@ -53,7 +53,8 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success! " + this.getClass());
 
 			ps = dbCon.prepareStatement("DELETE FROM chapter WHERE id = ?");
@@ -80,7 +81,8 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 			ps = dbCon.prepareStatement("SELECT * FROM chapter WHERE id = ?");
 			ps.setString(1, id);
@@ -121,7 +123,8 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 		Dao<Course> cdi = new CourseDaoImpl();
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 
 			// TODO : finalize this query for get all
@@ -148,7 +151,8 @@ public class ChapterDaoImpl implements Dao<Chapter> {
 		PreparedStatement ps;
 
 		// setup and create a prepared statement
-		try (Connection dbCon = DbConnector.getConnection();) {
+		try {
+			Connection dbCon = DbConnector.getConnection();
 			log.info("Connection success!");
 
 			ps = dbCon.prepareStatement("UPDATE chapter SET title = ?, chapter_number = ?  WHERE id = ?");

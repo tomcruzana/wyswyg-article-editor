@@ -15,18 +15,20 @@ import com.wyswyg.dao.CourseDaoImpl;
 import com.wyswyg.domain.Course;
 
 @SuppressWarnings("serial")
-@WebServlet("/all")
-public class IndexController extends HttpServlet {
+@WebServlet("/search")
+public class SearchController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		String courseTitle = req.getParameter("q");
 		CourseDaoImpl cdi = new CourseDaoImpl();
-
+		System.out.println(courseTitle);
 		List<Course> allCourses;
 
 		try {
-			allCourses = cdi.getAll();
+			allCourses = cdi.getCoursesByTitle(courseTitle);
+			System.out.println(allCourses);
 			req.setAttribute("courseList", allCourses);
 			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 			rd.forward(req, res);
