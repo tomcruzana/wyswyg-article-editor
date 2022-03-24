@@ -1,44 +1,43 @@
 .component-border {
-  border: 1px solid transparent;
+	border: 1px solid transparent;
 }
 
 .component-border:hover {
-  border: 1px solid #0275d8;
+	border: 1px solid #0275d8;
 }
 
 .component-insert {
-  height: 20px;
+	height: 20px;
 }
 
 .component-insert-plus {
-  position: relative;
-  top: -20px;
+	position: relative;
+	top: -20px;
 }
 
 /* toggle visibility of component insert button */
 .component-insert {
-  border-top: 1px solid transparent;
+	border-top: 1px solid transparent;
 }
 
-.component-insert > button {
-  color: transparent;
-  background-color: transparent;
-  border: 1px solid transparent;
+.component-insert>button {
+	color: transparent;
+	background-color: transparent;
+	border: 1px solid transparent;
 }
 
 .component-insert:hover {
-  border-top: 1px solid #0275d8;
+	border-top: 1px solid #0275d8;
 }
 
-.component-insert:hover > button {
-  color: #fff;
-  background-color: #0275d8;
-  border: 1px solid #0275d8;
+.component-insert:hover>button {
+	color: #fff;
+	background-color: #0275d8;
+	border: 1px solid #0275d8;
 }
 
-.component-insert-plus:focus,
-.component-insert-plus:active{
-  /* remove glow of button*/
-    box-shadow:none !important;
-    outline:0px !important;
+.component-insert-plus:focus, .component-insert-plus:active {
+	/* remove glow of button*/
+	box-shadow: none !important;
+	outline: 0px !important;
 }

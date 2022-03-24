@@ -1,6 +1,7 @@
 package com.wyswyg.domain;
 
 import java.io.Serializable;
+import java.sql.Clob;
 
 @SuppressWarnings("serial")
 public class Page implements Serializable, Comparable<Page> {

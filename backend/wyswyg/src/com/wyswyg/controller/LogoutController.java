@@ -16,30 +16,20 @@ import com.wyswyg.dao.CourseDaoImpl;
 import com.wyswyg.domain.Course;
 
 @SuppressWarnings("serial")
-@WebServlet("/courseselector")
-public class LoginController extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-		try {
-			// create session for the user
-			HttpSession hs = req.getSession();
-			hs.setAttribute("admin", "Thomas");
-
-			// fetch available courses for editing
-			CourseDaoImpl cdi = new CourseDaoImpl();
-			List<Course> adminCourses = cdi.getAll();
-			if (adminCourses != null) {
-				hs.setAttribute("adminCourses", adminCourses);
-			}else {
-				hs.setAttribute("adminCourses", "No course available. Please create one!");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		HttpSession hs = req.getSession(false);
+		if(hs==null) {
+			req.setAttribute("msg", "Session expired! Please login.");
 		}
-
-		req.getRequestDispatcher("courseselector.jsp").forward(req, res);
+		else {
+			hs.invalidate();
+			req.setAttribute("msg", "You have logged out successfuly.");
+		}
+		req.getRequestDispatcher("logout.jsp").forward(req, res);
 
 	}
 

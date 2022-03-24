@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="com.wyswyg.domain.*, java.util.*"%>
+	pageEncoding="ISO-8859-1"
+	import="com.wyswyg.domain.Course, java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
 	crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="./styles/courseeditor.css" />
-<link rel="stylesheet" href="./styles/login_form.css" />
 <link rel="stylesheet" href="./styles/j-theme.css" />
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -27,119 +27,141 @@
 	<!-- admin navbar goes here -->
 	<jsp:include page="adminnavbar.html" />
 
-	<div class="container-fluid page-components-container">
-		<!-- user information -->
-		<%
-		String adminName = (String) session.getAttribute("admin");
-		%>
-		<div class="my-3">
-			<h5>
-				Welcome
-				<%=adminName%></h5>
-			<a href="logout">Logout</a>
-		</div>
-		<!-- course breadcrumbs -->
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item"><a href="#">Library</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Data</li>
-			</ol>
-		</nav>
+	<div class="container-fluid page-components-container h-100">
+		<div class="row h-100">
+			<!-- navbar goes here -->
+			<jsp:include page="sidebar.jsp"></jsp:include>
 
-		<!-- mandatory component - chapter & page -->
-		<h6 class="text-center mb-5">
-			<i>Chapter <span id="ch">X</span>, Page <span id="pg">X</span></i>
-		</h6>
-
-		<!-- insert component menu middle-->
-		<div id="ICB100" class="row my-3">
-			<div class="col">
-				<div class="text-center component-insert">
-					<button type="button" class="btn component-insert-plus"
-						data-toggle="modal" data-target="#exampleModalCenter">
-						<i class="fa-solid fa-plus"></i>
-					</button>
+			<!-- course breadcrumbs -->
+			<div class="col mt-3 page-components-container">
+				<!-- user information -->
+				<%
+				String adminName = (String) session.getAttribute("admin");
+				%>
+				<div class="my-3 d-block">
+					<h5>
+						Welcome
+						<%=adminName%></h5>
+					<a href="logout">Logout</a>
 				</div>
-			</div>
-		</div>
+				<div class="course-info">
+					<%
+					Course course = (Course)session.getAttribute("course");
+					String courseName = course.getTitle();
+					String courseDateCreated = course.getDateCreated().toString();
+					%>
+					<p>
+						Course name:
+						<%=courseName%>
+						| <i>Date created: <%=courseDateCreated%></i>
+					</p>
+				</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#"><%=courseName%></a></li>
+						<li class="breadcrumb-item"><a href="#">Chapter</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Page</li>
+					</ol>
 
-		<!-- Modals -->
-		<!-- component munu option -->
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Component Menu</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div id="componentListGroup" class="list-group">
-							<button id="dateAuthorComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Date/Author
-							</button>
-							<button id="whatToLearnComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> What to learn?
-							</button>
-							<button id="imageFigureComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Image figure
-							</button>
-							<button id="slideshowComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Slideshow
-							</button>
-							<button id="paragraphComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Paragraph
-							</button>
-							<button id="videoComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Video
-							</button>
-							<button id="blockquoteComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Blockquote
-							</button>
-							<button id="codeBlockComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Code block
-							</button>
-							<button id="citationComponent" type="button"
-								class="list-group-item list-group-item-action"
-								data-dismiss="modal">
-								<i class="fa-solid fa-cube"></i> Citation
+
+				</nav>
+
+				<!-- mandatory component - chapter & page -->
+				<h6 class="text-center mb-5">
+					<i>Chapter <span id="ch">X</span>, Page <span id="pg">X</span></i>
+				</h6>
+
+				<!-- insert component menu middle-->
+				<div id="ICB100" class="row my-3">
+					<div class="col">
+						<div class="text-center component-insert">
+							<button type="button" class="btn component-insert-plus"
+								data-toggle="modal" data-target="#exampleModalCenter">
+								<i class="fa-solid fa-plus"></i>
 							</button>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
+				</div>
+
+				<!-- Modals -->
+				<!-- component munu option -->
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Component
+									Menu</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div id="componentListGroup" class="list-group">
+									<button id="dateAuthorComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Date/Author
+									</button>
+									<button id="whatToLearnComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> What to learn?
+									</button>
+									<button id="imageFigureComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Image figure
+									</button>
+									<button id="slideshowComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Slideshow
+									</button>
+									<button id="paragraphComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Paragraph
+									</button>
+									<button id="videoComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Video
+									</button>
+									<button id="blockquoteComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Blockquote
+									</button>
+									<button id="codeBlockComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Code block
+									</button>
+									<button id="citationComponent" type="button"
+										class="list-group-item list-group-item-action"
+										data-dismiss="modal">
+										<i class="fa-solid fa-cube"></i> Citation
+									</button>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
 					</div>
 				</div>
+
+				<!-- save button -->
+				<button type="button" class="btn btn-primary btn-lg btn-block my-3">
+					<i class="fa-solid fa-floppy-disk"></i> Save
+				</button>
 			</div>
 		</div>
-
-		<!-- save button -->
-		<button type="button" class="btn btn-primary btn-lg btn-block my-3">
-			<i class="fa-solid fa-floppy-disk"></i> Save
-		</button>
 	</div>
-
 	<!-- Optional JavaScript -->
 	<script src="./scripts/courseeditor.js"></script>
 	<script src="./scripts/courseeditorsave.js"></script>

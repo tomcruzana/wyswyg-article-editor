@@ -1,55 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
-	import="com.wyswyg.domain.Course, java.util.*"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="ISO-8859-1" />
 <!-- Required meta tags -->
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/e4d4c44ee2.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="./styles/loadingspinner.css" />
-<link rel="stylesheet" href="./styles/courseeditor.css" />
+
+<link rel="stylesheet" href="styles/index.css" />
+<link rel="stylesheet" href="styles/j-theme.css" />
+<link rel="stylesheet" href="styles/loadingspinner.css" />
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous" />
 
-
-<title>ZXV Learning | Course</title>
+<title>ZXV Learning | Logout</title>
 </head>
 <body>
 	<!-- navbar goes here -->
-	<jsp:include page="navbar.html"></jsp:include>
-	<div class="container-fluid page-components-container">
-		<div class="row h-100">
-			<!-- navbar goes here -->
-			<jsp:include page="sidebar.jsp"></jsp:include>
+	<jsp:include page="navbar.html" />
 
-			<!-- course breadcrumbs -->
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item"><a href="#">Library</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Data</li>
-				</ol>
-			</nav>
+	<div class="container my-4">
 
-			<!-- mandatory component - chapter & page -->
-			<h6 class="text-center mb-5">
-				<i>Chapter <span id="ch">X</span>, Page <span id="pg">X</span></i>
-			</h6>
+		<%
+		String msg = (String) request.getAttribute("msg");
 
-			<!-- components go here -->
-			<div class="loader">Loading...</div>
-		</div>
+		out.println("<h1>" + msg + "</h1>");
+		%>
 	</div>
 	<!-- Optional JavaScript -->
+	<script src="scripts/index.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

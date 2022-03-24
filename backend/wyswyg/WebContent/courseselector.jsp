@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	import="com.wyswyg.domain.Course, java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+<link rel="stylesheet" href="./styles/j-theme.css" />
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -17,8 +19,10 @@
 <title>ZXV Learning | Created Courses</title>
 </head>
 <body>
+	<!--  admin navbar goes here -->
+	<jsp:include page="adminnavbar.html"></jsp:include>
+
 	<div class="container-fluid">
-		<jsp:include page="adminnavbar.html"></jsp:include>
 		<!-- user information -->
 		<%
 		String adminName = (String) session.getAttribute("admin");
@@ -31,26 +35,29 @@
 		</div>
 		<button type="button" class="btn btn-primary btn-lg my-4">New
 			Course</button>
-		<table class="table table-sm">
-			<thead>
-				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Title</th>
-					<th scope="col">Date Created</th>
-					<th scope="col">Chapters</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">A999</th>
-					<td>Lorem Ipsum</td>
-					<td>2022-08-09</td>
-					<td>10</td>
-					<td><button type="button" class="btn btn-danger btn-sm">X</button></td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="m-5">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Title</th>
+						<th scope="col">Date Created</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					List<Course> courses = (ArrayList<Course>) session.getAttribute("adminCourses");
+
+					for (Course c : courses) {
+						out.println("<tr><th scope='row'> <a href='courseeditor?cid=" + c.getId() + "'>" + c.getId() + "</a></th> <td>"
+						+ c.getTitle() + "</td> <td>" + c.getDateCreated()
+						+ "</td> <td><button type='button' class='btn btn-danger btn-sm'>X</button></td></tr>");
+					}
+					%>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 	<!-- Optional JavaScript -->

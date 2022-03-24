@@ -1,5 +1,6 @@
 package com.wyswyg.controller;
 
+import java.sql.Clob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,9 +36,24 @@ public class Temp {
 		log.info(jdriver + " " + jurl);
 		log.info("App initialization success!");
 
+		CourseBuilder cb = new CourseBuilder();
+		Course course = cb.prepareCourse("SN100", "ServiceNow");
+		Chapter chapter1 = cb.prepareChapter("SN100CH100", "History of ServiceNow", 1, course);
+		Page page1 = cb.preparePage("SN100CH100PG100", "<p>Lorem ipsum dolor</p>", "Section 1: History", 1, chapter1);
+
 		CourseDaoImpl cdi = new CourseDaoImpl();
-		List<Course> allCourses = cdi.getAll();
-		allCourses.forEach(c -> System.out.println(c));
+		int rs1 = cdi.add(course);
+
+		ChapterDaoImpl chdi = new ChapterDaoImpl();
+		int rs2 = chdi.add(chapter1);
+
+		PageDaoImpl pdi = new PageDaoImpl();
+		int rs3 = pdi.add(page1);
+		
+		System.out.println(rs1);
+		System.out.println(rs2);
+		System.out.println(rs3);
+
 	}
 
 }

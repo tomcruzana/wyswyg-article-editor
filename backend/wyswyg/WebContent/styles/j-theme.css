@@ -1,3 +1,9 @@
+html,
+body {
+  box-sizing: border-box !important;
+  height: 100%;
+}
+
 .j-shadow {
   z-index: 9999;
   box-shadow: 2px 2px 6px -1px rgba(133, 132, 132, 0.5);
@@ -6,27 +12,16 @@
 }
 
 .j-sidebar {
-  width: 30%;
-  height: auto;
   background-color: #fafbfc !important;
   border-right: 1px solid #e6e6e6 !important;
 }
 
-.j-arrow-left{
-  position: absolute;
-  right: -10px;
+.j-chapters {
+  height: 100vh;
+  overflow-y: scroll;
 }
 
-.videosizer {
-  width: 640px;
+.fa-xmark:hover{
+  cursor: pointer;
+  opacity: 60%;
 }
-
-/* component <- move to a diff css module
-.component {
-  border: 1px solid transparent;
-}
-
-.component:hover {
-  border: 1px solid cyan;
-}
- */

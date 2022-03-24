@@ -2,6 +2,7 @@ package com.wyswyg.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +24,7 @@ public class IndexController extends HttpServlet {
 
 		CourseDaoImpl cdi = new CourseDaoImpl();
 
-		List<Course> allCourses;
+		List<Course> allCourses = new ArrayList<Course>();
 
 		try {
 			allCourses = cdi.getAll();
