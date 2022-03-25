@@ -18,6 +18,7 @@ import com.wyswyg.dao.PageDaoImpl;
 import com.wyswyg.domain.Chapter;
 import com.wyswyg.domain.Course;
 import com.wyswyg.domain.Page;
+import com.wyswyg.utils.CurrentCourseDto;
 
 @SuppressWarnings("serial")
 @WebServlet("/courseeditor")
@@ -36,7 +37,7 @@ public class CourseEditorController extends HttpServlet {
 
 			// fetch the selected course data for editing
 			CourseDaoImpl cdi = new CourseDaoImpl();
-			Course course = cdi.getAllChapterAndPage(courseId); // TODO: INNER JOIN ALL RELATED CHAPS & PAGES
+			CurrentCourseDto course = cdi.getAllChapterAndPage(courseId); // TODO: INNER JOIN ALL RELATED CHAPS & PAGES
 
 			if (course != null) {
 				hs.setAttribute("course", course);

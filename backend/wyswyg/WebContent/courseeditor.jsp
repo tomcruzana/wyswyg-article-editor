@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="com.wyswyg.domain.Course, java.util.*"%>
+	import="com.wyswyg.utils.CurrentCourseDto,
+java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,13 +28,13 @@
 	<!-- admin navbar goes here -->
 	<jsp:include page="adminnavbar.html" />
 
-	<div class="container-fluid page-components-container h-100">
+	<div class="container-fluid h-100">
 		<div class="row h-100">
 			<!-- navbar goes here -->
 			<jsp:include page="sidebar.jsp"></jsp:include>
 
 			<!-- course breadcrumbs -->
-			<div class="col mt-3 page-components-container">
+			<div class="col mt-3">
 				<!-- user information -->
 				<%
 				String adminName = (String) session.getAttribute("admin");
@@ -46,41 +47,55 @@
 				</div>
 				<div class="course-info">
 					<%
-					Course course = (Course)session.getAttribute("course");
-					String courseName = course.getTitle();
-					String courseDateCreated = course.getDateCreated().toString();
+					CurrentCourseDto course = (CurrentCourseDto) session.getAttribute("course");
+					String courseTitle = course.getCourseTitle();
+					String courseDateCreated = course.getCourseDateCreated().toString();
+					String chapterTitle = course.getChapterTitle();
+					Integer chapterNumber = course.getChapterNumber();
+					String pageTitle = course.getPageTitle();
+					Integer pageNumber = course.getPageNumber();
 					%>
 					<p>
 						Course name:
-						<%=courseName%>
+						<%=courseTitle%>
 						| <i>Date created: <%=courseDateCreated%></i>
 					</p>
 				</div>
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#"><%=courseName%></a></li>
-						<li class="breadcrumb-item"><a href="#">Chapter</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Page</li>
+						<li contenteditable="true" class="breadcrumb-item course-title">
+							<%=courseTitle%>
+						</li>
+						<li contenteditable="true" class="breadcrumb-item chapter-title">
+							<%=chapterTitle%>
+						</li>
+						<li contenteditable="true"
+							class="breadcrumb-item page-title active" aria-current="page">
+							<%=pageTitle%>
+						</li>
 					</ol>
-
-
 				</nav>
 
 				<!-- mandatory component - chapter & page -->
 				<h6 class="text-center mb-5">
-					<i>Chapter <span id="ch">X</span>, Page <span id="pg">X</span></i>
+					<i>Chapter <span contenteditable="true" id="ch-n"><%=chapterNumber%></span>,
+						Page <span contenteditable="true" id="pg-n"><%=pageNumber%></span></i>
 				</h6>
 
-				<!-- insert component menu middle-->
-				<div id="ICB100" class="row my-3">
-					<div class="col">
-						<div class="text-center component-insert">
-							<button type="button" class="btn component-insert-plus"
-								data-toggle="modal" data-target="#exampleModalCenter">
-								<i class="fa-solid fa-plus"></i>
-							</button>
+				<div class="page-components-container">
+					<%=course.getPageComponents()%>
+					<!-- insert component menu middle
+					<div id="ICB100" class="row my-3">
+						<div class="col">
+							<div class="text-center component-insert">
+								<button type="button" class="btn component-insert-plus"
+									data-toggle="modal" data-target="#exampleModalCenter">
+									<i class="fa-solid fa-plus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
+					-->
 				</div>
 
 				<!-- Modals -->
@@ -156,7 +171,8 @@
 				</div>
 
 				<!-- save button -->
-				<button type="button" class="btn btn-primary btn-lg btn-block my-3">
+				<button type="button" id="savePage"
+					class="btn btn-primary btn-lg btn-block my-3">
 					<i class="fa-solid fa-floppy-disk"></i> Save
 				</button>
 			</div>

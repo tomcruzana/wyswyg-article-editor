@@ -14,6 +14,7 @@ import com.wyswyg.controller.Temp;
 import com.wyswyg.domain.Chapter;
 import com.wyswyg.domain.Course;
 import com.wyswyg.domain.Page;
+import com.wyswyg.utils.CurrentCourseDto;
 import com.wyswyg.utils.DbConnector;
 
 public class CourseDaoImpl implements Dao<Course> {
@@ -111,13 +112,8 @@ public class CourseDaoImpl implements Dao<Course> {
 		return theCourse;
 	}
 
-	public Course getAllChapterAndPage(String id) throws SQLException {
-		Course course = null;
-		Chapter chapter = null;
-		Page page = null;
-
-		List<Chapter> allChapters = new ArrayList<>();
-		List<Page> allPages = new ArrayList<>();
+	public CurrentCourseDto getAllChapterAndPage(String id) throws SQLException {
+		CurrentCourseDto ccd = new CurrentCourseDto();
 
 		PreparedStatement ps;
 
@@ -134,24 +130,18 @@ public class CourseDaoImpl implements Dao<Course> {
 
 			if (resultSet.next()) {
 				// initialize and return all the objects
-				course = new Course();
-				course.setId(resultSet.getString("C_ID"));
-				course.setTitle(resultSet.getString("C_TITLE"));
-				course.setDateCreated(resultSet.getDate("C_DATECREATED"));
+				ccd.setCourseId(resultSet.getString("C_ID"));
+				ccd.setCourseTitle(resultSet.getString("C_TITLE"));
+				ccd.setCourseDateCreated(resultSet.getDate("C_DATECREATED"));
 
-				chapter = new Chapter();
-				chapter.setId(resultSet.getString("CH_ID"));
-				chapter.setTitle(resultSet.getString("CH_TITLE"));
-				chapter.setNumber(resultSet.getInt("CH_NUMBER"));
+				ccd.setChapterId(resultSet.getString("CH_ID"));
+				ccd.setChapterTitle(resultSet.getString("CH_TITLE"));
+				ccd.setChapterNumber(resultSet.getInt("CH_NUMBER"));
 
-				page = new Page();
-				page.setId(resultSet.getString("P_ID"));
-				page.setComponents(resultSet.getString("P_COMPONENTS"));
-				page.setTitle(resultSet.getString("P_TITLE"));
-				page.setNumber(resultSet.getInt("P_NUMBER"));
-
-				allPages.add(page);
-				allChapters.add(chapter);
+				ccd.setPageId(resultSet.getString("P_ID"));
+				ccd.setPageComponents(resultSet.getString("P_COMPONENTS"));
+				ccd.setPageTitle(resultSet.getString("P_TITLE"));
+				ccd.setPageNumber(resultSet.getInt("P_NUMBER"));
 
 				log.info("SQL query executed");
 			} else {
@@ -164,7 +154,7 @@ public class CourseDaoImpl implements Dao<Course> {
 			log.error("An error occured. ", e);
 		}
 
-		return course;
+		return ccd;
 	}
 
 	public List<Course> getCoursesByTitle(String title) throws SQLException {
