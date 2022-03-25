@@ -52,7 +52,7 @@
 					for (Course c : courses) {
 						out.println("<tr><th scope='row'> <a href='courseeditor?cid=" + c.getId() + "'>" + c.getId() + "</a></th> <td>"
 						+ c.getTitle() + "</td> <td>" + c.getDateCreated()
-						+ "</td> <td><button type='button' class='btn btn-danger btn-sm'>X</button></td></tr>");
+						+ "</td> <td><button type='button' id='"+c.getId()+"' class='btn btn-danger btn-sm delete-page-btn'>X</button></td></tr>");
 					}
 					%>
 				</tbody>
@@ -61,6 +61,7 @@
 	</div>
 
 	<!-- Optional JavaScript -->
+	<script src="./scripts/courseeditordelete.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

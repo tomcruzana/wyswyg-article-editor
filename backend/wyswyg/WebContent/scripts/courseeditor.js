@@ -171,14 +171,16 @@ componentList.set(
 </div>`
 );
 
+//TODO - bug occurs when this component is used
 componentList.set(
   "codeBlock",
   `<div class="row component">
 <div class="col">
+<pre>
   <code contenteditable="true">
     const x = 12; ()->{ console.log("hello, world!"); }
   </code>
-  <p></p>
+</pre>
 </div>
 </div>`
 );

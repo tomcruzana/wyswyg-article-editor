@@ -3,10 +3,10 @@
 	import="com.wyswyg.utils.CurrentCourseDto,
 java.util.*"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <!-- Required meta tags -->
-<meta charset="utf-8" />
+<meta charset="ISO-8859-1" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -84,18 +84,6 @@ java.util.*"%>
 
 				<div class="page-components-container">
 					<%=course.getPageComponents()%>
-					<!-- insert component menu middle
-					<div id="ICB100" class="row my-3">
-						<div class="col">
-							<div class="text-center component-insert">
-								<button type="button" class="btn component-insert-plus"
-									data-toggle="modal" data-target="#exampleModalCenter">
-									<i class="fa-solid fa-plus"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					-->
 				</div>
 
 				<!-- Modals -->

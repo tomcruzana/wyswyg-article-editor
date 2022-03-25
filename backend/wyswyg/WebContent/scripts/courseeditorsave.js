@@ -4,11 +4,17 @@ savePageBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   // get the updated page title, number and components (contents)
-  let pageTitle = document.querySelector(".page-title").textContent;
-  let pageNumber = document.querySelector("#pg-n").textContent;
-  let pageComponents = document.querySelector(
-    ".page-components-container"
-  ).innerHTML;
+  let pageTitle = document
+    .querySelector(".page-title")
+    .textContent.replace(/\s\s+/g, " "); //todo: create regex obj for this
+
+  let pageNumber = document
+    .querySelector("#pg-n")
+    .textContent.replace(/\s\s+/g, " ");
+
+  let pageComponents = document
+    .querySelector(".page-components-container")
+    .innerHTML.replace(/\s\s+/g, " ");
 
   // Temp log
   console.log(pageComponents + "\n" + pageNumber + "\n" + pageTitle);
